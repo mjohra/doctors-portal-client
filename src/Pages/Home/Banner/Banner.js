@@ -17,15 +17,15 @@ const verticalCenter={
 
 const Banner = () => {
     return (
-        <Container style={bannerBg} sx={{ flexGrow: 1 }}>
+        <Container style={bannerBg} sx={{ flexGrow: 1,my:5 }}>
         <Grid container spacing={2}>
           <Grid item style={{...verticalCenter,textAlign:'left'}} xs={12} md={6}>
             <Box>
-            <Typography variant="h3">
+            <Typography variant="h3" sx={{pb:3 }}>
                 Your New Smile <br />
                 Starts Here
             </Typography>
-            <Typography variant="h6" sx={{fontSize:14,color:'gray',fontWeight:300}}>
+            <Typography variant="h6" sx={{fontSize:14,color:'gray',fontWeight:300,pb:3}}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio deleniti in ea error illo, accusantium similique.
             </Typography>
             <Button variant="contained">Get Appointment</Button>
