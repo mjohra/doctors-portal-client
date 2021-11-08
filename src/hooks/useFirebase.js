@@ -6,6 +6,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  signInWithPopup,
+  GoogleAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 
 initializeFirebase();
@@ -15,15 +18,27 @@ const useFirebase = () => {
   const [authError, setAuthError] = useState("");
 
   const auth = getAuth();
+  const googleProvider = new GoogleAuthProvider();
 
-  const registerUser = (email, password) => {
+  const registerUser = (email, password, history, name) => {
     setIsLoading(true);
     console.log(email, password, "hello");
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         setAuthError("");
-        // ...
+        const newUser = { email, displayName: name };
+        setUser(newUser);
+        updateProfile(auth.currentUser, {
+          displayName:name
+        }).then(() => {
+          // Profile updated!
+          
+        }).catch((error) => {
+          // An error occurred
+          // ...
+        });
+        history.replace("/");
       })
       .catch((error) => {
         console.log("in error", error.message);
@@ -41,6 +56,19 @@ const useFirebase = () => {
         history.replace(destination);
         setAuthError("");
         // ...
+      })
+      .catch((error) => {
+        setAuthError(error.message);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  const signInWithGoogle = (location, history) => {
+    setIsLoading(true);
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setAuthError("");
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -79,6 +107,7 @@ const useFirebase = () => {
     registerUser,
     logOut,
     loginUser,
+    signInWithGoogle,
   };
 };
 export default useFirebase;

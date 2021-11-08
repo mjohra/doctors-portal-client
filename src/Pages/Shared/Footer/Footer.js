@@ -1,16 +1,7 @@
 import { Container, Grid, Typography } from "@mui/material";
 import React from "react";
-import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import fbg from "../../../images/footer-bg.png";
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
 const footerBanner = {
   background: `url(${fbg})`,
@@ -19,7 +10,7 @@ const footerBanner = {
 const Footer = () => {
   return (
     <Container sx={{ my: 5 }} style={footerBanner}>
-      <Box sx={{ flexGrow: 1, textAlign: "left",my:5 }}>
+      <Box sx={{ flexGrow: 1, textAlign: "left", my: 5 }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
@@ -121,7 +112,7 @@ const Footer = () => {
             </Typography>
           </Grid>
           <Grid item xs={6} md={3}>
-          <Typography
+            <Typography
               variant="h6"
               sx={{ my: 1 }}
               style={{ color: "#5CE7ED" }}
@@ -179,7 +170,7 @@ const Footer = () => {
             </Typography>
           </Grid>
           <Grid item xs={6} md={3}>
-          <Typography
+            <Typography
               variant="h6"
               sx={{ my: 1 }}
               style={{ color: "#5CE7ED" }}
@@ -238,9 +229,13 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Box>
-      <Typography variant="body1" style={{ color: "Black" }} sx={{my:5,textAlign: "center"}}>
-                Copyright 2021 All Right Reserved
-              </Typography>
+      <Typography
+        variant="body1"
+        style={{ color: "Black" }}
+        sx={{ my: 5, textAlign: "center" }}
+      >
+        Copyright 2021 All Right Reserved
+      </Typography>
     </Container>
   );
 };
